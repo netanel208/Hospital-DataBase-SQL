@@ -31,3 +31,7 @@ insert into patients value(208252674,'nati');
 insert into patients value(208252675,'lala');
 insert into patients value(208252676,'amir');
 insert into patients value(208252677,'ari');
+
+insert into hospital.queue_summary value('2019-03-30 00:07:00',111111111,0);
+insert into hospital.queue_summary value('2019-03-30 00:07:00',222222222,0);
+insert into hospital.queue_summary value('2019-03-30 00:07:00',333333333,0);

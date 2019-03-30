@@ -28,4 +28,77 @@ inner join hospital.queue on appointment.appointment_id = queue.appointment_id
 order by diff desc) as rel LIMIT 10;*/
 
 /*Q4*/
+/*DELIMITER $$
+CREATE TRIGGER after_delete_trigger 
+after delete on hospital.queue
+ for each row 
+ begin
+ 
+ update hospital.queue_summary set num_of_patients = 
+  (select count(rel.patient_id) 
+   from 
+	   (select queue.appointment_id, appointment.patient_id, appointment.doctor_id 
+	    from queue inner join appointment on queue.appointment_id = appointment.appointment_id) as rel
+   group by rel.doctor_id
+   having rel.doctor_id = 111111111)
+where doctor_id = 111111111;
 
+
+ update hospital.queue_summary set num_of_patients = 
+  (select count(rel.patient_id) 
+   from 
+	   (select queue.appointment_id, appointment.patient_id, appointment.doctor_id 
+	    from queue inner join appointment on queue.appointment_id = appointment.appointment_id) as rel
+   group by rel.doctor_id
+   having rel.doctor_id = 222222222)
+where doctor_id = 222222222;
+
+update hospital.queue_summary set num_of_patients = 
+  (select count(rel.patient_id) 
+   from 
+	   (select queue.appointment_id, appointment.patient_id, appointment.doctor_id 
+	    from queue inner join appointment on queue.appointment_id = appointment.appointment_id) as rel
+   group by rel.doctor_id
+   having rel.doctor_id = 333333333)
+where doctor_id = 333333333;
+
+ end $$
+ DELIMITER ;
+
+
+DELIMITER $$
+CREATE TRIGGER after_insert_trigger 
+after insert on hospital.queue
+ for each row 
+ begin
+ 
+ update hospital.queue_summary set num_of_patients = 
+  (select count(rel.patient_id) 
+   from 
+	   (select queue.appointment_id, appointment.patient_id, appointment.doctor_id 
+	    from queue inner join appointment on queue.appointment_id = appointment.appointment_id) as rel
+   group by rel.doctor_id
+   having rel.doctor_id = 111111111)
+where doctor_id = 111111111;
+
+
+ update hospital.queue_summary set num_of_patients = 
+  (select count(rel.patient_id) 
+   from 
+	   (select queue.appointment_id, appointment.patient_id, appointment.doctor_id 
+	    from queue inner join appointment on queue.appointment_id = appointment.appointment_id) as rel
+   group by rel.doctor_id
+   having rel.doctor_id = 222222222)
+where doctor_id = 222222222;
+
+update hospital.queue_summary set num_of_patients = 
+  (select count(rel.patient_id) 
+   from 
+	   (select queue.appointment_id, appointment.patient_id, appointment.doctor_id 
+	    from queue inner join appointment on queue.appointment_id = appointment.appointment_id) as rel
+   group by rel.doctor_id
+   having rel.doctor_id = 333333333)
+where doctor_id = 333333333;
+
+ end $$
+ DELIMITER ;*/
